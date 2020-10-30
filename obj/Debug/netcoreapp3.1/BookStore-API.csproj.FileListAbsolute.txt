@@ -83,3 +83,5 @@ C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1
 C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1\nlog.config
 C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1\NLog.dll
 C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Alex K\source\repos\BookStore-API\BookStore-API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
