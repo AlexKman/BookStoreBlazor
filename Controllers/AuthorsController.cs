@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BookStore_API.Contracts;
+using BookStore_API.Data;
 using BookStore_API.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -71,6 +72,113 @@ namespace BookStore_API.Controllers
             }
 
 
+        }
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] AuthorCreateDTO authorDTO)
+        {
+            try
+            {
+                _logger.LogWarn($"Author Submission detrected");
+                if (authorDTO == null)
+                {
+                    _logger.LogWarn($"Empty request submitted");
+                    return BadRequest(ModelState);
+                };
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarn($"Data was incomplete");
+                    return BadRequest(ModelState);
+                }
+                var author = _mapper.Map<Author>(authorDTO);
+                var isSuccess = await _authorRepository.Create(author);
+                if (!isSuccess)
+                {
+                    return InternalError($"Author creation failed");
+                }
+                _logger.LogInfo("author successfully created");
+                return Created("Create", new { author });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message}-{e.InnerException}");
+            }
+        }
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update(int id, [FromBody] AuthorUpdateDTO authorDTO)
+        {
+            try
+            {
+                _logger.LogInfo($"Author updated attempted - id: {id}");
+                if (id < 1 || authorDTO == null || id != authorDTO.id)
+                {
+                    _logger.LogInfo($"Author updated failed with bad data");
+                    return BadRequest();
+                }
+                var isExists = await _authorRepository.isExists(id);
+                if (!isExists)
+                {
+                    _logger.LogWarn($"Author with  id: {id} not found");
+                    return NotFound();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogInfo($"Author data was incomplete");
+                }
+                var author = _mapper.Map<Author>(authorDTO);
+                var isSuccess = await _authorRepository.Update(author);
+                if (!isSuccess)
+                {
+                    return InternalError($"Update failed");
+                }
+                _logger.LogInfo($"Author with id {id} successfully updated");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message}-{e.InnerException}");
+            }
+        }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                _logger.LogInfo($"Author with  id: {id} delete attempted");
+                if (id < 1)
+                {
+                    _logger.LogWarn($"Author delete failed with bad data");
+                    return BadRequest();
+                }
+                var isExists = await _authorRepository.isExists(id);
+                if (isExists)
+                {
+                    _logger.LogWarn($"Author with id: {id} not found");
+                    return NotFound();
+                }
+
+                var author = await _authorRepository.FindById(id);
+                var isSuccess = await _authorRepository.Delete(author);
+                if (!isSuccess)
+                {
+                    return InternalError($"Author delete failed");
+                }
+                _logger.LogWarn($"Author with  id: {id} successfully deleted");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message}-{e.InnerException}");
+            }
         }
         private ObjectResult InternalError(string message)
         {
