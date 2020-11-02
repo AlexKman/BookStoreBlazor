@@ -11,7 +11,8 @@ namespace BookStore_API.Data
         public string ISBN { get; set; }
         public string Summary { get; set; }
         public string Image { get; set; }
-        public double? Price { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? Price { get; set; }
         public int? AuthorId { get; set; }
 
 
