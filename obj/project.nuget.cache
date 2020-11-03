@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Cf+V98VlsoPDwU7EyKgsWX9OuIeHbpleXMbRHKjc3BzIUQNArvP5ALkRK675ynyb91xLZVCM55LgbqAx7Kd3XA==",
+  "dgSpecHash": "f/lkTHM09C6HC9YBlhc8l1pL3Kri8l/y5W+5QoGGB1jFaMrx8r1fMPsu652/kl1qFvWNNeaq7JM4y+Iho39tRg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alex K\\source\\repos\\BookStore-API\\BookStore-API\\BookStore-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alex K\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Alex K\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\Alex K\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\Alex K\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Alex K\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",
     "C:\\Users\\Alex K\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.9.nupkg.sha512",
